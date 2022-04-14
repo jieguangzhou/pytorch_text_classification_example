@@ -50,5 +50,3 @@ class TextClassificationWrapper(mlflow.pyfunc.PythonModel):
     def predict(self, context, model_input):
         labels = self.predictor.predict(model_input.description.to_numpy())
         return {"results": labels}
-
-

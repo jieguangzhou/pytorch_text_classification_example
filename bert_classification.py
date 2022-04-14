@@ -471,12 +471,14 @@ if __name__ == "__main__":
         'name': 'mlflow-env'
     }
 
+    code_path = ['bert_classification.py', 'predictor.py']
+
     from predictor import TextClassificationWrapper
     model_name = dict_args['model_name']
     mlflow.pyfunc.log_model(
         artifact_path=mlflow_pyfunc_model_path, python_model=TextClassificationWrapper(),
         registered_model_name=model_name,
-        artifacts=artifacts, conda_env=conda_env)
+        artifacts=artifacts, conda_env=conda_env, code_path=code_path)
 
     client = mlflow.tracking.MlflowClient()
     filter_string = "name='{}'".format(model_name)
