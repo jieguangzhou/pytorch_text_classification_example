@@ -20,6 +20,7 @@ class Predictor:
         self.max_length = 100
         self.batch_size = 1
         self.model.load_state_dict(torch.load(model_path))
+        self.model.eval()
 
     def predict(self, reviews):
         targets = np.array([0] * len(reviews))
